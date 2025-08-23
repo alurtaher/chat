@@ -6,6 +6,9 @@ const sequelize = require("../util/database");
 const Sib = require("sib-api-v3-sdk");
 const { Op } = require("sequelize");
 
+function generateAccessToken(id, email) {
+  return jwt.sign({ userId: id, email: email }, process.env.TOKEN);
+}
 
 const getLoginPage = async (req, res, next) => {
   try {
@@ -14,10 +17,6 @@ const getLoginPage = async (req, res, next) => {
     console.log(error);
   }
 };
-
-function generateAccessToken(id, email) {
-  return jwt.sign({ userId: id, email: email }, process.env.TOKEN);
-}
 
 const postUserSignUp = async (req, res, next) => {
   try {
@@ -55,7 +54,6 @@ const postUserSignUp = async (req, res, next) => {
     console.log(error);
   }
 };
-
 
 const postUserLogin = async (req, res, next) => {
   try {
@@ -98,5 +96,5 @@ const postUserLogin = async (req, res, next) => {
 module.exports = {
   getLoginPage,
   postUserSignUp,
-  postUserLogin
+  postUserLogin,
 };
