@@ -2,6 +2,30 @@ const path = require("path");
 const User = require("../models/userModel");
 const Chat = require("../models/chatModel");
 const sequelize = require("../util/database");
+const { Op } = require("sequelize");
+
+// const io = require("socket.io")(5000, {
+//   cors: {
+//     origin: "http://localhost:4000",
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["my-custom-header"],
+//     credentials: true,
+//   },
+// });
+
+// io.on("connection", (socket) => {
+//   socket.emit("data", "Hello World");
+//   // Listen for "getMessages" event from client
+//   socket.on("getMessages", async () => {
+//     try {
+//       const messages = await Chat.findAll();
+//       // Emit "messages" event to the client with the messages data
+//       io.emit("messages", messages);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   });
+// });
 
 exports.sendMessage = async (req, res, next) => {
   try {
@@ -19,7 +43,14 @@ exports.sendMessage = async (req, res, next) => {
 
 exports.getMessages = async (req, res, next) => {
   try {
-    const messages = await Chat.findAll();
+    const param = req.params.param;
+    const messages = await Chat.findAll({
+      where: {
+        id: {
+          [Op.gt]: param,
+        },
+      },
+    });
     return res.status(200).json({ messages: messages });
   } catch (error) {
     console.log(error);
