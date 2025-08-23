@@ -6,7 +6,11 @@ const path = require("path");
 const fs = require("fs");
 
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const dotenv = require("dotenv");
 dotenv.config();
