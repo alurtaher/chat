@@ -29,6 +29,12 @@ async function activeGroup(e) {
 
 async function messageSend() {
   try {
+    if (chatBoxBody.querySelector(".groupMembersDiv")) {
+      const members = chatBoxBody.querySelectorAll(".groupMembersDiv");
+      members.forEach((member) => {
+        member.remove();
+      });
+    }
     const message = messageTextArea.value;
     const token = localStorage.getItem("token");
     const groupName = localStorage.getItem("groupName");
