@@ -59,44 +59,41 @@ const postUserSignUp = async (req, res, next) => {
 
 const postUserLogin = async (req, res, next) => {
   try {
-    const { loginEmail: email, loginPassword: password } = req.body;
+    const email = req.body.loginEmail;
+    const password = req.body.loginPassword;
 
-    // Check if user exists
-    const user = await User.findOne({ where: { email } });
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User doesn't exist!",
-      });
-    }
-
-    // Compare passwords
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(401).json({
-        success: false,
-        message: "Password Incorrect!",
-      });
-    }
-
-    // If login success
-    return res.status(200).json({
-      success: true,
-      message: "Login Successful!",
-      token: generateAccessToken(user.id, user.email),
+    await User.findOne({ where: { email: email } }).then((user) => {
+      if (user) {
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ success: false, message: "Something went Wrong!" });
+          }
+          if (result == true) {
+            return res.status(200).json({
+              success: true,
+              message: "Login Successful!",
+              token: generateAccessToken(user.id, user.email),
+            });
+          } else {
+            return res.status(401).json({
+              success: false,
+              message: "Password Incorrect!",
+            });
+          }
+        });
+      } else {
+        return res.status(404).json({
+          success: false,
+          message: "User doesn't Exists!",
+        });
+      }
     });
-
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Something went wrong!",
-    });
+    console.log(error);
   }
 };
-
 
 module.exports = {
   getLoginPage,

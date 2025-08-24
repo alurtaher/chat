@@ -1,3 +1,9 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+<link rel="stylesheet" href="/css/homePage.css" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html>
 
@@ -13,11 +19,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-    <link rel="stylesheet" href="../css/homePage.css" />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+<!--Coded With Love By Mutiullah Samim-->
 
 <body>
     <div class="container-fluid h-100">
@@ -33,47 +36,15 @@
                         </div>
                     </div>
                     <div class="card-body contacts_body">
-                        <ui class="contacts">
-                            <li class="active">
-                                <div class="d-flex bd-highlight">
-                                    <div class="user_info">
-                                        <span>Khalid</span>
-                                        <p>Kalid is online</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex bd-highlight">
-                                    <div class="user_info">
-                                        <span>Taherah Big</span>
-                                        <p>Taherah left 7 mins ago</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex bd-highlight">
-                                    <div class="user_info">
-                                        <span>Sami Rafi</span>
-                                        <p>Sami is online</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex bd-highlight">
-                                    <div class="user_info">
-                                        <span>Nargis Hawa</span>
-                                        <p>Nargis left 30 mins ago</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex bd-highlight">
-                                    <div class="user_info">
-                                        <span>Rashid Samim</span>
-                                        <p>Rashid left 50 mins ago</p>
-                                    </div>
-                                </div>
-                            </li>
+                        <ui class="contacts" id="groups">
+                            <!-- <li class="active">
+                  <div class="d-flex bd-highlight">
+                    <div class="user_info">
+                      <span>Khalid</span>
+                      <p>Kalid is online</p>
+                    </div>
+                  </div>
+                </li> -->
                         </ui>
                     </div>
                     <div class="card-footer"></div>
@@ -83,21 +54,25 @@
                 <div class="card">
                     <div class="card-header msg_head">
                         <div class="d-flex bd-highlight">
-                            <div class="user_info">
-                                <span>Chat with Khalid</span>
-                                <p>1767 Messages</p>
+                            <div class="user_info" id="groupNameHeading">
+                                <!-- <span>Chat with Khalid</span>
+                  <p>1767 Messages</p> -->
                             </div>
-                            <div class="video_cam">
-                                <span><i class="fas fa-video"></i></span>
-                                <span><i class="fas fa-phone"></i></span>
-                            </div>
+                            <!-- <div class="video_cam">
+                  <span><i class="fas fa-video"></i></span>
+                  <span><i class="fas fa-phone"></i></span>
+                </div> -->
                         </div>
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
                         <div class="action_menu">
                             <ul>
                                 <li><i class="fas fa-user-circle"></i> View profile</li>
-                                <li><i class="fas fa-users"></i> Add to close friends</li>
-                                <li><i class="fas fa-plus"></i> Add to group</li>
+                                <li id="createGroup">
+                                    <i class="fas fa-users"></i> Create Group
+                                </li>
+                                <li id="addToGroup">
+                                    <i class="fas fa-plus"></i> Add to group
+                                </li>
                                 <li><i class="fas fa-ban"></i> Block</li>
                             </ul>
                         </div>
@@ -149,6 +124,7 @@
     });
 </script>
 <!-- <script src="http://localhost:5000/socket.io/socket.io.js"></script> -->
+<script src="../js/group.js"></script>
 <script src="../js/chat.js"></script>
 
 </html>
