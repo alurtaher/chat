@@ -30,10 +30,7 @@ exports.createGroup = async (req, res, next) => {
           });
         })
       );
-      //   await UserGroup.update(
-      //     { isadmin: true },
-      //     { where: { userId: req.user.id } }
-      //   );
+
       await UserGroup.create({
         isadmin: true,
         userId: req.user.id,
